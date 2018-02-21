@@ -1,4 +1,11 @@
-import {Component, OnInit, Input, ViewEncapsulation} from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  ViewEncapsulation,
+  OnChanges,
+  SimpleChanges
+} from '@angular/core';
 
 @Component({
   selector: 'app-server-element',
@@ -6,12 +13,20 @@ import {Component, OnInit, Input, ViewEncapsulation} from '@angular/core';
   styleUrls: ['./server-element.component.css'],
   encapsulation: ViewEncapsulation.Emulated   // <--default None, Native
 })
-export class ServerElementComponent implements OnInit {
+export class ServerElementComponent implements OnInit, OnChanges {
   @Input('srvElement') element: {type: string, name: string, content: string };
 
-  constructor() { }
+  constructor() {
+    console.log('Constructor called!')
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    console.log('OnChanges called!');
+    console.log(changes)
+  }
 
   ngOnInit() {
+    console.log('OnInit called!')
   }
 
 }
